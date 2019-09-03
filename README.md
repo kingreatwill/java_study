@@ -6,6 +6,7 @@ https://zhuanlan.zhihu.com/p/53881873
  https://www.toutiao.com/a6710182249989407244 https://www.toutiao.com/a6729435445844771339/
 2. 多线程 https://www.cnblogs.com/waterystone/p/4920797.html
 https://www.toutiao.com/a6725323063988060680/ 原子操作
+https://www.infoq.cn/article/K3H2TQlXAyImgNPQ9Dy7
 3. lambda https://www.toutiao.com/a6730770887240335876/
 https://segmentfault.com/a/1190000019574204
 https://mp.weixin.qq.com/s?__biz=MzI3ODcxMzQzMw==&mid=2247490117&idx=3&sn=bb3697ac16082a9d3001ad7036366f9c
