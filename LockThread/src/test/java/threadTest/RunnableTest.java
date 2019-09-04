@@ -18,6 +18,14 @@ public class RunnableTest {
         MyThread myThread = new MyThread();
         Thread thread = new Thread(myThread);
         thread.start();
+
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                    System.out.println("thread2.run()");
+            }
+        });
+        thread2.start();
         TimeUnit.SECONDS.sleep(10);
     }
 
