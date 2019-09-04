@@ -2,7 +2,16 @@ package threadTest;
 
 import org.junit.Test;
 
+/*
+* 实现线程的方式
+1 继承thread类
+2 实现runnable接口
+3 实现Callable接口通过FutureTask包装器来创建Thread线程
+* */
 public class ThreadTest {
+
+
+
 
     @Test
     public void testJoin() throws InterruptedException {
