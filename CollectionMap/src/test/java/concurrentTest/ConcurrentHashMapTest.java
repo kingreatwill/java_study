@@ -1,13 +1,25 @@
 package concurrentTest;
 
+import org.junit.Test;
+
+import java.util.concurrent.ConcurrentHashMap;
+
 /*
 1.ConcurrentHashMap 并发版HashMap
 
-最常见的并发容器之一,可以用作并发场景下的缓存。底层依然是哈希表,但在JAVA 8中有了不小的改变,而JAVA 7和JAVA 8都是用的比较多的版本,因此经常会将这两个版本的实现方式做一些比较（比如面试中）。
+最常见的并发容器之一,可以用作并发场景下的缓存。底层依然是哈希表,但在JAVA 8中有了不小的改变,而JAVA 7和JAVA 8都是用的比较多的版本,
+因此经常会将这两个版本的实现方式做一些比较（比如面试中）。
 
-一个比较大的差异就是,JAVA 7中采用分段锁来减少锁的竞争,JAVA 8中放弃了分段锁,采用CAS（一种乐观锁）,同时为了防止哈希冲突严重时退化成链表（冲突时会在该位置生成一个链表,哈希值相同的对象就链在一起）,会在链表长度达到阈值（8）后转换成红黑树（比起链表,树的查询效率更稳定）。
+一个比较大的差异就是,JAVA 7中采用分段锁来减少锁的竞争,JAVA 8中放弃了分段锁,采用CAS（一种乐观锁）,
+同时为了防止哈希冲突严重时退化成链表（冲突时会在该位置生成一个链表,哈希值相同的对象就链在一起）,会在链表长度达到阈值（8）后转换成红黑树（比起链表,树的查询效率更稳定）。
  */
 public class ConcurrentHashMapTest {
+    @Test
+    public void test1(){
+        ConcurrentHashMap<String,String> concurrentHashMap=new ConcurrentHashMap<>();
+        concurrentHashMap.put("","");
+
+    }
 }
 
 /*
@@ -19,7 +31,8 @@ static final class HashEntry<K,V> {
     volatile V value;
     volatile HashEntry<K,V> next;
 }
-ConcurrentHashMap 和 HashMap 实现上类似,最主要的差别是 ConcurrentHashMap 采用了分段锁（Segment）,每个分段锁维护着几个桶（HashEntry）,多个线程可以同时访问不同分段锁上的桶,从而使其并发度更高（并发度就是 Segment 的个数）。
+ConcurrentHashMap 和 HashMap 实现上类似,最主要的差别是 ConcurrentHashMap 采用了分段锁（Segment）,
+* 每个分段锁维护着几个桶（HashEntry）,多个线程可以同时访问不同分段锁上的桶,从而使其并发度更高（并发度就是 Segment 的个数）。
 
 Segment 继承自 ReentrantLock。
 
