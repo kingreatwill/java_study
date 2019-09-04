@@ -1,9 +1,59 @@
 package MapsTest;
 
+import org.junit.Test;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LinkedHashMapTest {
+    @Test
+    public void test1(){
+        LinkedHashMap<String, Object> hasMap = new LinkedHashMap<String, Object>();
+        hasMap.put("name", "zhangsan");
+        hasMap.put("age", 20);
+        hasMap.put("addr", "北京市");
+        hasMap.put(null, null);
+        hasMap.put("info", null);
+        hasMap.put(null, "who");
+
+        for (Map.Entry<String, Object> entry : hasMap.entrySet()) {
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
+        /*
+        * 根据输出我们可以得出以下几个结论：
+LinkedHashMap的输入顺序和输出顺序是一致的。
+LinkedHashMap允许Key和Value都可以null
+LinkedHashMap中添加元素时，如果Key重复，则后添加的会覆盖前面已经存在的值
+        * */
+    }
+
+    @Test
+    public void test2(){
+        LRUCache<Integer, String> cache = new LRUCache<>();
+        cache.put(1, "a");
+        cache.put(2, "b");
+        cache.put(3, "c");
+        cache.get(1);
+        cache.put(4, "d");
+        System.out.println(cache.keySet());
+        /*
+        *  设定最大缓存空间 MAX_ENTRIES 为 3；
+        使用 LinkedHashMap 的构造函数将 accessOrder 设置为 true，开启 LRU 顺序；
+        覆盖 removeEldestEntry() 方法实现，在节点多于 MAX_ENTRIES 就会将最近最久未使用的数据移除。
+        * */
+    }
+    class LRUCache<K, V> extends LinkedHashMap<K, V> {
+        private static final int MAX_ENTRIES = 3;
+
+        protected boolean removeEldestEntry(Map.Entry eldest) {
+            return size() > MAX_ENTRIES;
+        }
+
+        LRUCache() {
+            super(MAX_ENTRIES, 0.75f, true);
+        }
+    }
+
 }
 
 /*

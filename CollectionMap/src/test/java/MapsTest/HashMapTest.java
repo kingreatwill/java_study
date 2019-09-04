@@ -2,11 +2,159 @@ package MapsTest;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+
 public class HashMapTest {
     @Test
     public void test(){
+        HashMap<String,String> hashMap =new HashMap<>();
+        hashMap.put("","1");
+        hashMap.put(null,"2");
+        hashMap.put(null,"8");
+        //HashMap 可以插入键为 null 的 Entry。
+        System.out.println(hashMap);
+    }
+    @Test
+    public void  test2(){
+        CreateTraversal t =new CreateTraversal();
+        t.test();
 
     }
+    public class CreateTraversal {
+        public  Map<String, Object> createMap() {
+            Map<String, Object> map = new HashMap<>();
+            map.put("xxx1", "CC");
+            map.put("xxxx2", "FFF");
+            map.put("", "");//可以的, 这样定义也可以
+            map.put(null, null);/*key可以为null, 但是只能有一个, 只有一个起作用*/
+            map.put(null, null);
+            map.put("xxxx3", "3C");
+            map.put("xxx4", "BBB");
+            map.put(" ", " ");//可以的, 这样定义也可以
+            map.put("xxx5", "AAA");
+            map.put("xxx6", null);
+            map.put("xxx7", "CCC");
+            map.put("xxx8", null);//value为null, 资料暂空, value为null可以有多个
+            map.put("xxx9", "FFF");
+
+            return map;
+        }
+
+        public  void traversalMap(Map<String, Object> map, int type) {
+            switch (type) {
+                case 0:
+                    partForEachTraversal(map);
+                    break;
+                case 1:
+                    forEachKeySetTraversal(map);
+                    break;
+                case 2:
+                    forEachEntrySetTraversal(map);
+                    break;
+                case 3:
+                    iteratorKeySetTraversal(map);
+                    break;
+                case 4:
+                    System.out.println("推荐map.entrySet()+iterator");
+                    iteratorEntrySetTraversal(map);
+                    break;
+                default:
+                    iteratorEntrySetTraversal(map);
+
+            }
+        }
+
+        /*只是遍历了values, 没有遍历keys*/
+        private  void partForEachTraversal(Map<String, Object> map) {
+            System.out.println("\n使用values来循环, 只能遍历values, 无法遍历keys");
+            long start = System.currentTimeMillis();
+            for (Object value : map.values()) {
+                System.out.print(value + " ");
+            }
+            long end = System.currentTimeMillis();
+            long time = start - end;
+            System.out.println("\nmap的大小n: " + map.values().size());
+            System.out.println("运行时间为: " + time + "ms");
+            System.out.println("");
+
+        }
+
+        /*map.keySet()+foreach*/
+        private  void forEachKeySetTraversal(Map<String, Object> map) {
+            System.out.println("map.keySet()+foreach, 完成遍历, 速度慢!");
+            long start = System.currentTimeMillis();
+            for (String key : map.keySet()) {
+                System.out.print("key: " + key + ", values: " + map.get(key) + "; ");
+            }
+            long end = System.currentTimeMillis();
+            long time = start - end;
+            System.out.println("\nmap的大小n: " + map.values().size());
+            System.out.println("运行时间为: " + time + "ms");
+            System.out.println("");
+        }
+
+        /*map.entrySet()+foreach*/
+        private  void forEachEntrySetTraversal(Map<String, Object> map) {
+            System.out.println("map.entrySet()+foreach, 完成遍历, 速度快!");
+            System.out.println("Map.Entry是Map类内部的一个接口,提供了Map类的主体方法和功能");
+            long start = System.currentTimeMillis();
+            Set<Map.Entry<String, Object>> entrySet = map.entrySet();//把这个set取出来
+            for (Map.Entry<String, Object> entry : entrySet) {/*---*/
+                System.out.print("key= " + entry.getKey() + " and value= " + entry.getValue() + "; ");
+            }
+            long end = System.currentTimeMillis();
+            long time = start - end;
+            System.out.println("\nmap的大小n: " + map.values().size());
+            System.out.println("运行时间为: " + time + "ms");
+            System.out.println("");
+        }
+
+
+        /*map.keySet()+iterator*/
+        private  void iteratorKeySetTraversal(Map<String, Object> map) {
+            System.out.println("map.keySet()+iterator, 完成遍历");
+            long start = System.currentTimeMillis();
+            Iterator<String> it = map.keySet().iterator();/**/
+            while (it.hasNext()) {
+                System.out.print("key :" + it.next() + " , value: " + map.get(it.next()));
+            }
+            long end = System.currentTimeMillis();
+            long time = start - end;
+            System.out.println("\nmap的大小n: " + map.values().size());
+            System.out.println("运行时间为: " + time + "ms");
+            System.out.println("");
+        }
+
+        /*map.entrySet()+iterator*/
+        private  void iteratorEntrySetTraversal(Map<String, Object> map) {
+            System.out.println("map.entrySet()+iterator, 完成遍历, 推荐的做法!");
+            long start = System.currentTimeMillis();
+            //Iterator it = map.entrySet().iterator();/*---*/
+            Iterator<Map.Entry<String, Object>> it = map.entrySet().iterator();//上下相同, 这个清晰一些
+            while (it.hasNext()) {
+                System.out.print("key :" + it.next() + " , value: " + map.get(it.next()));
+            }
+            long end = System.currentTimeMillis();
+            long time = start - end;
+            System.out.println("\nmap的大小n: " + map.values().size());
+            System.out.println("运行时间为: " + time + "ms");
+            System.out.println("");
+        }
+
+        public  void test() {
+            System.out.println("由于map使用key-value形式的数据结构,所以没有使用数字形式的位置,不可使用for(int i=0;i<n;i++形式)");
+            Map<String, Object> mp = createMap();
+            traversalMap(mp, 0);
+            traversalMap(mp, 1);
+            traversalMap(mp, 2);
+            traversalMap(mp, 3);
+            traversalMap(mp, 4);
+        }
+    }
+
 }
 
 /*

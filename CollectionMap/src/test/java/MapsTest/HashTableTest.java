@@ -1,5 +1,9 @@
 package MapsTest;
 
+import java.util.Enumeration;
+import java.util.Hashtable;
+import org.junit.Test;
+
 /*
 1. HashMap几乎可以等价于Hashtable，除了HashMap是非synchronized的，并可以接受null(HashMap可以接受为null的键值(key)和值(value)，而Hashtable则不行)。
 2. HashMap是非synchronized，而Hashtable是synchronized，这意味着Hashtable是线程安全的，多个线程可以共享一个Hashtable；而如果没有正确的同步的话，多个线程是不能共享HashMap的。Java 5提供了ConcurrentHashMap，它是HashTable的替代，比HashTable的扩展性更好。
@@ -8,4 +12,19 @@ package MapsTest;
 5. HashMap不能保证随着时间的推移Map中的元素次序是不变的。
 **/
 public class HashTableTest {
+    @Test
+    public void test1(){
+        Hashtable<String,String> hashTable =new Hashtable<String,String>();
+        hashTable.put("","1");
+        hashTable.put("8","2");
+        hashTable.put("9","3");
+        hashTable.put("7","3");
+        Enumeration  names = hashTable.keys();
+        while(names.hasMoreElements()) {
+            String str = (String) names.nextElement();
+            System.out.println(str + ": " +
+                    hashTable.get(str));
+        }
+       // hashTable.put(null,""); // 运行出错
+    }
 }

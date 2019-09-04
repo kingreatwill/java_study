@@ -1,4 +1,6 @@
 # java_study
+https://github.com/LingCoder/OnJava8
+https://github.com/BruceEckel/OnJava8-examples
 https://zhuanlan.zhihu.com/p/53881873
 0. 基础库了解
 1. java容器和并发容器
@@ -14,7 +16,8 @@ https://mp.weixin.qq.com/s?__biz=MzI3ODcxMzQzMw==&mid=2247490117&idx=3&sn=bb3697
 5. 第三方工具类库 https://mp.weixin.qq.com/s/6PuweZaayprn1GuyAaaFqw
 https://mp.weixin.qq.com/s?__biz=MzI4OTA3NDQ0Nw==&mid=2455546501&idx=1&sn=061d6a5a48deeebdd0d9eb4ebdde202e
 6. 锁 https://zhuanlan.zhihu.com/p/71156910 https://segmentfault.com/a/1190000017766364
-
+https://mp.weixin.qq.com/s?__biz=MzA3ODQ0Mzg2OA==&mid=2649050204&idx=2&sn=0923f6564c79cf5ba2e43092e1e28fed
+https://www.toutiao.com/a6716885615176057352
 7. 整理jdk特性
 
 8. IO 操作 netty
