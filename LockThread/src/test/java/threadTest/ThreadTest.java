@@ -3,6 +3,7 @@ package threadTest;
 import org.junit.Test;
 
 /*
+https://www.cnblogs.com/Java-Starter/p/11079239.html
 * 实现线程的方式
 1 继承thread类
 2 实现runnable接口

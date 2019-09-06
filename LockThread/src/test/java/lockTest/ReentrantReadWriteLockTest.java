@@ -1,5 +1,12 @@
 package lockTest;
 
+import org.junit.Test;
+
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
 /*
 * ReentrantReadWriteLock维护了一对相关的锁：共享锁readLock和独占锁writeLock。
 * 共享锁readLock用于读操作，能同时被多个线程获取；独占锁writeLock用于写入操作，只能被一个线程持有。
@@ -22,4 +29,76 @@ ReentrantReadWriteLock允许读线程和写线程重复获取读锁或写锁。�
 Condition只有在写锁中用到，读锁是不支持Condition的。
 * */
 public class ReentrantReadWriteLockTest {
+    @Test
+    public  void test1(){
+    //利用重入来执行升级缓存后的锁降级
+    }
+    class CachedData {
+        Object data;
+        volatile boolean cacheValid;    //缓存是否有效
+        ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
+
+        void processCachedData() {
+            rwl.readLock().lock();    //获取读锁
+            //如果缓存无效，更新cache;否则直接使用data
+            if (!cacheValid) {
+                // Must release read lock before acquiring write lock
+                //获取写锁前须释放读锁
+                rwl.readLock().unlock();
+                rwl.writeLock().lock();
+                // Recheck state because another thread might have acquired
+                //   write lock and changed state before we did.
+                if (!cacheValid) {
+                    //data = ...
+                    cacheValid = true;
+                }
+                // Downgrade by acquiring read lock before releasing write lock
+                //锁降级，在释放写锁前获取读锁
+                rwl.readLock().lock();
+                rwl.writeLock().unlock(); // Unlock write, still hold read
+            }
+
+           // use(data);
+            rwl.readLock().unlock();    //释放读锁
+        }
+    }
+    @Test
+    public  void test2(){
+//使用 ReentrantReadWriteLock 来提高 Collection 的并发性
+//
+//　　　　通常在 collection 数据很多，读线程访问多于写线程并且 entail 操作的开销高于同步开销时尝试这么做。
+    }
+
+    class RWDictionary {
+        private final Map<String, Object> m = new TreeMap<String, Object>();
+        private final ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
+        private final Lock r = rwl.readLock();    //读锁
+        private final Lock w = rwl.writeLock();    //写锁
+
+        public Object get(String key) {
+            r.lock();
+            try { return m.get(key); }
+            finally { r.unlock(); }
+        }
+        public Object[] allKeys() {
+            r.lock();
+            try { return m.keySet().toArray(); }
+            finally { r.unlock(); }
+        }
+        public Object put(String key, Object value) {
+            w.lock();
+            try { return m.put(key, value); }
+            finally { w.unlock(); }
+        }
+        public void clear() {
+            w.lock();
+            try { m.clear(); }
+            finally { w.unlock(); }
+        }
+    }
+
+    @Test
+    public  void test3(){
+
+    }
 }

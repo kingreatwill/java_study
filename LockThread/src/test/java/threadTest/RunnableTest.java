@@ -25,7 +25,12 @@ public class RunnableTest {
                     System.out.println("thread2.run()");
             }
         });
+
         thread2.start();
+
+        new Thread(() -> {
+            System.out.println("thread2.run()");
+        }).start();
         TimeUnit.SECONDS.sleep(10);
     }
 
