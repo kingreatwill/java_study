@@ -35,5 +35,12 @@
     <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.34.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-codec-http2:4.1.34.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.34.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.helidon.health:helidon-health:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: io.helidon.media.jsonp:helidon-media-jsonp-server:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: io.helidon.media.jsonp:helidon-media-jsonp-common:1.2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.glassfish:javax.json:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: javax.json:javax.json-api:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.microprofile.health:microprofile-health-api:2.0.1" level="project" />
+    <orderEntry type="library" name="Maven: io.helidon.health:helidon-health-checks:1.2.0" level="project" />
   </component>
 </module>
