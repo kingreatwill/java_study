@@ -10,3 +10,5 @@ https://www.springcloud.cc/ 中文
 2. Custom init() and destroy() methods
 
 3. The @PostConstruct and @PreDestroy annotations. You can combine these mechanisms to control a given bean.
+
+//https://docs.spring.io/spring-boot/docs/2.2.0.M5/reference/html/spring-boot-features.html#boot-features-spring-application
