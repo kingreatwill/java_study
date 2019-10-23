@@ -1,4 +1,4 @@
-package com.demo.www;
+package com.demo.functionx;
 
 // 只有一个方法的接口 称为function接口  默认注解@FunctionalInterface， 可以  方法引用
 interface Callable { // [1]

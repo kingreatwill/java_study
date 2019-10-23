@@ -1,4 +1,4 @@
-package com.demo.www;
+package com.demo.functionx;
 
 class Go {
     static void go() {

@@ -1,4 +1,4 @@
-package com.demo.xxx;
+package com.demo.streamx;
 
 public class Bubble {
     public final int i;

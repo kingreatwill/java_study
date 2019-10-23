@@ -1,6 +1,4 @@
-package com.demo.www;
-
-import java.util.function.Supplier;
+package com.demo.functionx;
 
 class Dog {
     String name;

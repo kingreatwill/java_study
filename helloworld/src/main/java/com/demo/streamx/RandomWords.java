@@ -1,6 +1,5 @@
-package com.demo.xxx;
+package com.demo.streamx;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;

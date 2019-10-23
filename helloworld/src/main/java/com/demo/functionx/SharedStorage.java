@@ -1,9 +1,6 @@
-package com.demo.www;
+package com.demo.functionx;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.IntSupplier;
-import java.util.function.Supplier;
 
 class Closure1 {
     int i;

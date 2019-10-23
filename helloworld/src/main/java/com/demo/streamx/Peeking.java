@@ -1,4 +1,4 @@
-package com.demo.xxx;
+package com.demo.streamx;
 
 public class Peeking {
     public static void main(String[] args) throws Exception {

@@ -1,4 +1,4 @@
-package com.demo.www;
+package com.demo.functionx;
 class X {
     String f() { return "X::f()"; }
 }

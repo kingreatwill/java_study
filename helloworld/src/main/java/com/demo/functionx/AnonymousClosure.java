@@ -1,6 +1,5 @@
-package com.demo.www;
+package com.demo.functionx;
 
-import java.util.List;
 import java.util.function.IntSupplier;
 
 public class AnonymousClosure {
