@@ -1,4 +1,5 @@
-
+http://www.choupangxia.com/2019/10/20/interview-jvm-gc-01/
+https://www.cnblogs.com/secbro/p/11738063.html
 
 # 串行垃圾回收器
 JDK 1.3之前的垃圾回收器，单线程回收，并且会有stop theworld（下文会简称STW），也即GC时，暂停所有用户线程。

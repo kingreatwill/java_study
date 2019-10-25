@@ -2,7 +2,6 @@ package com.demo.Funcs;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import java.util.function.IntConsumer;
 
 /*
 *
@@ -99,4 +98,5 @@ public class ConsumerTest {
         }
 
     }
+
 }
