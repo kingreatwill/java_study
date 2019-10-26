@@ -16,11 +16,11 @@ B	    指定字符B
 
 表达式	        含义
 .	            任意字符
-[abc]	        包含a、b或c的任何字符（和`a
+[abc]	        包含a、b或c的任何字符
 [^abc]	        除a、b和c之外的任何字符（否定）
 [a-zA-Z]	    从a到z或从A到Z的任何字符（范围）
-[abc[hij]]	    a、b、c、h、i、j中的任意字符（与`a
-[a-z&&[hij]]	任意h、i或j（交）
+[abc[hij]]	    a、b、c、h、i、j中的任意字符（abc 和 hij 的合集）
+[a-z&&[hij]]	任意h、i或j（a-z和hij的交集）
 \s	            空白符（空格、tab、换行、换页、回车）
 \S	            非空白符（[^\s]）
 \d	            数字（[0-9]）
@@ -40,6 +40,18 @@ $	        一行的结束
 \b	        词的边界
 \B	        非词的边界
 \G	        前一个匹配的结束
+
+
+贪婪型	勉强型	占有型	如何匹配
+X?	    X??	    X?+	    一个或零个X
+X*	    X*?	    X*+	    零个或多个X
+X+	    X+?	    X++	    一个或多个X
+X{n}	X{n}?	X{n}+	恰好n次X
+X{n,}	X{n,}?	X{n,}+	至少n次X
+X{n,m}	X{n,m}?	X{n,m}+	X至少n次，但不超过m次
+
+占有型： 目前，这种类型的量词只有在Java语言中才可用
+
      */
     public static void main(String[] args) {
         for(String pattern : new String[]{

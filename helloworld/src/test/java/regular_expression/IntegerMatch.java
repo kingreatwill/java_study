@@ -26,7 +26,10 @@ public class IntegerMatch {
         System.out.println("+911".matches("-?\\d+"));
         System.out.println("+911".matches("(-|\\+)?\\d+"));
         System.out.println("+911".matches("[-+]?\\d+"));
+        System.out.println("+911".matches("[-+]\\d+"));
 
+        System.out.println("a".matches("[abc[hij]]")); // 只能匹配 a b c h   i   j, 合集
+        System.out.println("h".matches("[a-z&&[hij]]")); // 只能匹配 h   i   j, 交集
         // 大写W 非单词字符
         // 小写w 单词字符
         split(" "); // Doesn't have to contain regex chars
