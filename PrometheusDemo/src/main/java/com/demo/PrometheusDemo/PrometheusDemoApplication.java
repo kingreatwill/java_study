@@ -4,10 +4,9 @@ import com.sun.net.httpserver.HttpServer;
 import io.micrometer.prometheus.PrometheusConfig;
 import io.micrometer.prometheus.PrometheusMeterRegistry;
 import io.prometheus.client.hotspot.DefaultExports;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 
 import java.io.IOException;
@@ -15,22 +14,31 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 @SpringBootApplication
-public class PrometheusDemoApplication implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> {
+public class PrometheusDemoApplication  {
 
 	public static void main(String[] args) {
 	    // 1
 //        run();
-//		SpringApplication.run(PrometheusDemoApplication.class, args);
+		//SpringApplication.run(PrometheusDemoApplication.class, args);//spring.profiles.active=dev 配置文件指定
 
         // 2
-        SpringApplication app = new SpringApplication(PrometheusDemoApplication.class);
-        app.addListeners(new StartApplicationListener());
+//        SpringApplication app = new SpringApplication(PrometheusDemoApplication.class);
+//        app.addListeners(new StartApplicationListener());
+//        app.setAdditionalProfiles("dev"); // 指定application-dev.properties
+//        app.run(args);
 
-        app.run(args);
+        //变更配置文件读取位置启动
+        new SpringApplicationBuilder(PrometheusDemoApplication.class)
+                .properties("spring.config.location=classpath:/springbootconfig.properties")
+                .run(args);
+
 
 //        new SpringApplicationBuilder(PrometheusDemoApplication.class)
 //                .web(WebApplicationType.SERVLET) //.NONE .REACTIVE, .SERVLET
+//                .profiles("dev") // 指定application-dev.properties
 //                .run(args);
+
+       //  @PropertySource("classpath:define.properties") 指定自定义文件
 	}
 
 	// 1. 必须放到启动类中;
@@ -61,9 +69,9 @@ public class PrometheusDemoApplication implements WebServerFactoryCustomizer<Con
 
     // 2. implements WebServerFactoryCustomizer<JettyServletWebServerFactory>;
     // 2. implements WebServerFactoryCustomizer<ConfigurableServletWebServerFactory>;
-    @Override
+    //@Override
     public void customize(ConfigurableServletWebServerFactory factory) {
-        factory.setPort(8082);
+        //factory.setPort(8082);
     }
 
     public static void run() {
