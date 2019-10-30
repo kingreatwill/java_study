@@ -1,0 +1,4 @@
+package com.demo.genericx;
+
+public class Vehicle {
+}
