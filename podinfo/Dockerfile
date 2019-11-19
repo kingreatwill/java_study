@@ -19,3 +19,5 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 # docker rmi javapodinfo:0.1
 # docker pull kingreatwill/javapodinfo:0.1
 # docker run --name javapodinfo -d -p 8080:8080 -p 9999:9999 kingreatwill/javapodinfo:0.1
+
+
