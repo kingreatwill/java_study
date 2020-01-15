@@ -24,3 +24,8 @@ hs_err_pid*
 /.idea/
 /helloworld/.gradle/
 /PrometheusDemo/target/
+/GraalVM/target/
+/FlinkDemo/target/
+/helloworld/target/
+/helloworld/target/
+/helloworld/target/
